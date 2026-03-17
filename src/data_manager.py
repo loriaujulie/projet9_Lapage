@@ -47,7 +47,11 @@ def inspection (df) :
     print('\n---------------------------------------------------------------------')
 
 # créer une itération sur chaque colonne
-    if df.shape[0] == df.nunique().sum() :
-        print('Il n\'y a pas de doublons dans ce dataframe, cela peut constituer une PK ou FK')
-    else : 
-        print('Il y a des doublons dans ce dataframe, cela ne peut constituer une PK ou FK en l\'état')
+
+valeurs_uniques = df.nunique()
+pk_possible = [col for col in df.columns if valeurs_uniques[col] == df.shape[0]]
+
+if pk_possible:
+    print("Colonnes pouvant constituer une clé primaire :", pk_possible)
+else:
+    print("Aucune colonne ne peut constituer une clé primaire en l'état.")
