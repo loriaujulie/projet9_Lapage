@@ -36,6 +36,7 @@ def inspection (df) :
     print('---------------------------------------------------------------------')
     print(df.isnull().sum())
 
+    print('\n---------------------------------------------------------------------')
     print('Affichage du nombre de doublons :')
     print('---------------------------------------------------------------------')
     print (df.duplicated().sum())
@@ -48,10 +49,10 @@ def inspection (df) :
 
 # créer une itération sur chaque colonne
 
-valeurs_uniques = df.nunique()
-pk_possible = [col for col in df.columns if valeurs_uniques[col] == df.shape[0]]
+    valeurs_uniques = df.nunique()
+    pk_possible = [col for col in df.columns if valeurs_uniques[col] == df.shape[0]]
 
-if pk_possible:
-    print("Colonnes pouvant constituer une clé primaire :", pk_possible)
-else:
-    print("Aucune colonne ne peut constituer une clé primaire en l'état.")
+    if pk_possible:
+        print("Colonnes pouvant constituer une clé primaire :", pk_possible)
+    else:
+        print("Aucune colonne ne peut constituer une clé primaire en l'état.")
