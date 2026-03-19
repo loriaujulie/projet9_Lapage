@@ -40,7 +40,7 @@ def inspection (df) :
     print('Affichage du nombre de doublons :')
     print('---------------------------------------------------------------------')
     print (df.duplicated().sum())
-   
+
     print('\n---------------------------------------------------------------------')
     print('Affichage des 5 premières lignes :')
     print('---------------------------------------------------------------------')
@@ -56,3 +56,21 @@ def inspection (df) :
         print("Colonnes pouvant constituer une clé primaire :", pk_possible)
     else:
         print("Aucune colonne ne peut constituer une clé primaire en l'état.")
+
+# ----------------------------------------------------------------------------------------
+
+import pandas as pd
+def verification_df (df, col1, col2):
+    if not isinstance (df, pd.DataFrame) :
+        print('KO, ce n\'est pas un dataframe')
+        return
+    if col1 not in df.columns or col2 not in df.columns :
+        print('KO, la/les colonne(s) n\'existe(nt) pas dans le dataframe')
+        return
+    if not pd.api.types.is_numeric_dtype(df['col1']) or not pd.api.types.is_numeric_dtype(['col2']) :
+        print('KO, la/les colonne(s) n\'est pas au format entier')
+        return
+print('ok, étape suivante')
+
+# from scipy.stats import pearsonr
+# def correlation_quanti_quanti(df, col1, col2) :
