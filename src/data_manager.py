@@ -75,11 +75,31 @@ def verification_df (df, col1, col2):
         return
 print('ok, étape suivante')
 
-# ----------------------------------------------------------------------------------------
-# from scipy.stats import norm
-# from scipy.stats import pearsonr
-# from scipy.stats import spearmanr
-# def correlation_quanti_quanti(df, col1, col2) :
-#     # calcul de la moyenne de l'écart type
-#     col1=df['col1'].
-#     st.pearsonr(df['col1'],-df['col2'][0])
+# Réponse à la recherche de réalisation de la 
+
+def verification_donnees_utilisateur(df,var1,var2):
+    
+    resultats = {
+        'type_df':type(df)._name_,
+        'dtype_var1':df[var1].dtype if var1 in df.columns else None,
+        'dtype_var2':df[var2].dtype if var2 in df.columns else None,
+    }
+    return resultats    
+    
+    # appel de la fonction 
+verification_donnees_utilisateur(df=clients, var1='variable_choisie_1',var2='variable_choisie_2')
+
+# Méthode SHAPIRO de scipy : test de shapiro-Wilk
+from scipy.stats import shapiro
+
+def verification_normalite (df,var):
+
+    # verifie la normalité
+    stat, p_shapiro = shapiro(df[var])
+
+    # retour des résultats
+    resultats = {
+        'shapiro_stat': stat,
+        'p_value': p_shapiro,
+    }
+    return resultats
